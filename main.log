@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.11.7)  14 NOV 2019 22:34
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.11.7)  14 NOV 2019 23:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -639,10 +639,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [7]
 [8] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 17071 strings out of 494956
- 375505 string characters out of 6177213
- 573328 words of memory out of 5000000
- 20629 multiletter control sequences out of 15000+600000
+ 17078 strings out of 494956
+ 375634 string characters out of 6177213
+ 573320 words of memory out of 5000000
+ 20636 multiletter control sequences out of 15000+600000
  5029 words of font info for 20 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  81i,13n,101p,425b,1547s stack positions out of 5000i,500n,10000p,200000b,80000s

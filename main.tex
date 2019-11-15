@@ -82,8 +82,8 @@ circumcircle of the triangle.
   \node (n4) at +(120:\rad) [point, label = above:$a'$] {};
   \node (n2) at +(-145:\rad) [point, label = below:$2$] {};
   \node (n3) at +(-45:\rad) [point, label = {below right:$(0, 0, 0)$}] {};
-  \node (n7) at +(-96:1.666*\rad) [point, label = {below right:$(0, 0, 0)'$}] {};
-  \node (n6) at +(-45:1.666*\rad) [point, label = {below right:}] {};
+  \node (n7) at +(-95:1.666*\rad) [point, label = {below right:}] {};
+  \node (n6) at +(-45:1.666*\rad) [point, label = {below right:$(0,  0, 0)'$}] {};
 
   % triangle edges: connect the vertices, and leave a node at the midpoint
   \draw[->] (n3) -- node (a) [label = {above right:$\vec{v}_1$}] {} (n1);
@@ -151,18 +151,18 @@ circumcircle of the triangle.
   % triangle nodes: just points on the circle
   \node (n1) at +(60:\rad) [point, label = above:$a$] {};
   \node (n5) at +(60:1.666*\rad) [point, label = above:$a$] {};
-  \node (n4) at +(120:\rad) [point, label = above:$a'$] {};
-  \node (n2) at +(-145:\rad) [point, label = below:$2$] {};
+  \node (n4) at +(135:\rad) [point, label = above:$a'$] {};
+  \node (n2) at +(-120:\rad) [point, label = below:$2$] {};
   \node (n3) at +(-45:\rad) [point, label = {below right:$(0, 0, 0)$}] {};
-  \node (n7) at +(-96:1.666*\rad) [point, label = {below right:$(0, 0, 0)'$}] {};
+  \node (n7) at +(-85:1.666*\rad) [point, label = {below right:$(0, 0, 0)'$}] {};
   \node (n6) at +(-45:1.666*\rad) [point, label = {below right:}] {};
 
   % triangle edges: connect the vertices, and leave a node at the midpoint
   \draw[->] (n3) -- node (a) [label = {above right:$\vec{v}_1$}] {} (n1);
-  \draw[->] (n3) -- node (a') [label = {above right:$\vec{v}_3$}] {} (n4);
+  \draw[->] (n3) -- node (a') [label = {above right:}] {} (n4);
   \draw[->] (n3) -- node (b) [label = {below right:$\vec{v}_2$}] {} (n2);
-  \draw[blue] (n5) -- node (c) [label = {below right:$\vec{v}_4$}] {} (n6);
-  \draw[blue] (n4) -- node (d) [label = {below right:$\vec{v}_5$}] {} (n2);
+  \draw[blue] (n5) -- node (c) [label = {below right:$\vec{t}_1$}] {} (n6);
+  \draw[blue] (n4) -- node (d) [label = {below right:$\vec{t}_2$}] {} (n2);
   \draw[dashed] (n2) -- (n1);
 
   % Bisectors
