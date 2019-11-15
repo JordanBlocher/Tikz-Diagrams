@@ -61,6 +61,7 @@ to this line and passes through its midpoint. This drawing shows
 perpendicular bisectors of a triangle. They meet in the center of the
 circumcircle of the triangle.
 
+
 {
 \begin{tikzpicture}
   [
@@ -72,17 +73,24 @@ circumcircle of the triangle.
 
   % the circle
   \def\rad{1}
-  \node (origin) at (0,0) [point, label = {below right:$P_c$}]{};
+  \node (origin) at (0,0) [point, label = {below right:$A_c$}]{};
   \draw (origin) circle (\rad);
 
   % triangle nodes: just points on the circle
-  \node (n1) at +(60:\rad) [point, label = above:$1$] {};
+  \node (n1) at +(60:\rad) [point, label = above:$a$] {};
+  \node (n5) at +(60:1.666*\rad) [point, label = above:$a$] {};
+  \node (n4) at +(120:\rad) [point, label = above:$a'$] {};
   \node (n2) at +(-145:\rad) [point, label = below:$2$] {};
-  \node (n3) at +(-45:\rad) [point, label = {below right:$3$ $(0, 0, 0)$}] {};
+  \node (n3) at +(-45:\rad) [point, label = {below right:$(0, 0, 0)$}] {};
+  \node (n7) at +(-96:1.666*\rad) [point, label = {below right:$(0, 0, 0)'$}] {};
+  \node (n6) at +(-45:1.666*\rad) [point, label = {below right:}] {};
 
   % triangle edges: connect the vertices, and leave a node at the midpoint
   \draw[->] (n3) -- node (a) [label = {above right:$\vec{v}_1$}] {} (n1);
+  \draw[->] (n3) -- node (a') [label = {above right:$\vec{v}_3$}] {} (n4);
   \draw[->] (n3) -- node (b) [label = {below right:$\vec{v}_2$}] {} (n2);
+  \draw[blue] (n5) -- node (c) [label = {below right:$\vec{v}_4$}] {} (n6);
+  \draw[blue] (n4) -- node (d) [label = {below right:$\vec{v}_5$}] {} (n2);
   \draw[dashed] (n2) -- (n1);
 
   % Bisectors
@@ -92,14 +100,14 @@ circumcircle of the triangle.
   % that distance.
   \draw[dotted]
     ($ (origin) ! 2 ! (a) $)
-    node [right] {Bisector 1}
+    node [right] {$A$}
     -- ($(a) ! 3 ! (origin)$ );
 
   % similarly for origin and b
   \draw[dotted]
     ($ (origin) ! 2 ! (b) $)
     -- ($(b) ! 3 ! (origin)$ )
-    node [right] {Bisector 2};
+    node [right] {$A'$};
 
   % short vectors
   \draw[->]
@@ -124,6 +132,93 @@ circumcircle of the triangle.
     }
 \end{tikzpicture}
 }
+
+
+{
+\begin{tikzpicture}
+  [
+    scale=3,
+    >=stealth,
+    point/.style = {draw, circle,  fill = black, inner sep = 1pt},
+    dot/.style   = {draw, circle,  fill = black, inner sep = .2pt},
+  ]
+
+  % the circle
+  \def\rad{1}
+  \node (origin) at (0,0) [point, label = {below right:$A_c$}]{};
+  \draw (origin) circle (\rad);
+
+  % triangle nodes: just points on the circle
+  \node (n1) at +(60:\rad) [point, label = above:$a$] {};
+  \node (n5) at +(60:1.666*\rad) [point, label = above:$a$] {};
+  \node (n4) at +(120:\rad) [point, label = above:$a'$] {};
+  \node (n2) at +(-145:\rad) [point, label = below:$2$] {};
+  \node (n3) at +(-45:\rad) [point, label = {below right:$(0, 0, 0)$}] {};
+  \node (n7) at +(-96:1.666*\rad) [point, label = {below right:$(0, 0, 0)'$}] {};
+  \node (n6) at +(-45:1.666*\rad) [point, label = {below right:}] {};
+
+  % triangle edges: connect the vertices, and leave a node at the midpoint
+  \draw[->] (n3) -- node (a) [label = {above right:$\vec{v}_1$}] {} (n1);
+  \draw[->] (n3) -- node (a') [label = {above right:$\vec{v}_3$}] {} (n4);
+  \draw[->] (n3) -- node (b) [label = {below right:$\vec{v}_2$}] {} (n2);
+  \draw[blue] (n5) -- node (c) [label = {below right:$\vec{v}_4$}] {} (n6);
+  \draw[blue] (n4) -- node (d) [label = {below right:$\vec{v}_5$}] {} (n2);
+  \draw[dashed] (n2) -- (n1);
+
+  % Bisectors
+  % start at the point lying on the line from (origin) to (a), at
+  % twice that distance, and then draw a path going to the point on
+  % the line lying on the line from (a) to the (origin), at 3 times
+  % that distance.
+  \draw[dotted]
+    ($ (origin) ! 2 ! (a) $)
+    node [right] {$A$}
+    -- ($(a) ! 3 ! (origin)$ );
+
+  % similarly for origin and b
+  \draw[dotted]
+    ($ (origin) ! 2 ! (b) $)
+    -- ($(b) ! 3 ! (origin)$ )
+    node [right] {$A'$};
+
+  % short vectors
+  \draw[->]
+    ($ (origin) ! -.7 ! (a) $)
+    -- node [below] {$\vec{u}_4$}
+    ($ (origin) ! -.1 ! (a) $);
+  \draw[->]
+    ($ (origin) ! -.1 ! (b) $)
+    -- node [right] {$\vec{u}_3$}
+    ($ (origin) ! -.7 ! (b) $);
+
+  % Right angle symbols
+  \def\ralen{.5ex}  % length of the short segment
+  \foreach \inter/\first/\last in {a/n3/origin, b/n2/origin}
+    {
+      \draw let \p1 = ($(\inter)!\ralen!(\first)$), % point along first path
+                \p2 = ($(\inter)!\ralen!(\last)$),  % point along second path
+                \p3 = ($(\p1)+(\p2)-(\inter)$)      % corner point
+            in
+              (\p1) -- (\p3) -- (\p2)               % path
+              ($(\inter)!.5!(\p3)$) node [dot] {};  % center dot
+    }
+\end{tikzpicture}
+}
+
+
+{
+\tikzset{
+    mycomplexfigure/.pic = {
+        \draw (-1,-1) rectangle (1,1);
+        \draw (0,0) circle (1);
+    }
+}
+\begin{tikzpicture}
+\path  (1,2) pic{mycomplexfigure};
+\path[blue,rotate=90,transform shape]  (2,1) pic{mycomplexfigure};
+\end{tikzpicture}
+}
+
 
 
 The construction of points on the perpendicular bissector of [AB].
@@ -186,7 +281,7 @@ A much simpler construction can certainly be done with other pgf commands but th
         \ifthenelse{\equal{\i}{0}}% Do not redraw the segment [AB]
             {}%
             {%
-                \stepcounter{index}
+                %\stepcounter{index}
                 % P(i) is a variable point on the perpendicular bissector.
                 % The distance between P(i) and P(i+1) is equal to 1
                 \pgfmathparse{\YI-\i*\NormeddeltaX} \let\YP\pgfmathresult
@@ -198,7 +293,8 @@ A much simpler construction can certainly be done with other pgf commands but th
                 \draw[MyCircles] (P) circle ({\radius});
                 \draw[Segments] (P)--(A);
                 \draw[Segments] (P)--(B);
-                \fill[MyPoints] (P) circle (0.8mm) node[right]{$P_{\theindex}$};
+                %\fill[MyPoints] (P) circle (0.8mm) node[right]{$P_{\theindex}$};
+                \fill[MyPoints] (P) circle (0.8mm) node[right]{$P_{i}$};
             }%
         };
         
@@ -511,60 +607,6 @@ Consider $n$ randomly placed points on a circle.
 }
 
 
-{
-\pgfdeclarelayer{background}
-\pgfsetlayers{background,main}
-
-\begin{frame}
-\frametitle{Prim's algorithm}
-
-%% Adjacency matrix of graph
-%% \  a  b  c  d  e  f  g
-%% a  x  7     5
-%% b  7  x  8  9  7
-%% c     8  x     5
-%% d  5  9     x 15  6
-%% e     7  5 15  x  8  9
-%% f           6  8  x 11
-%% g              9  11 x
-
-\tikzstyle{vertex}=[circle,fill=black!25,minimum size=20pt,inner sep=0pt]
-\tikzstyle{selected vertex} = [vertex, fill=red!24]
-\tikzstyle{edge} = [draw,thick,-]
-\tikzstyle{weight} = [font=\small]
-\tikzstyle{selected edge} = [draw,line width=5pt,-,red!50]
-\tikzstyle{ignored edge} = [draw,line width=5pt,-,black!20]
-
-\begin{tikzpicture}[scale=1.8, auto,swap]
-    % Draw a 7,11 network
-    % First we draw the vertices
-    \foreach \pos/\name in {{(0,2)/a}, {(2,1)/b}, {(4,1)/c},
-                            {(0,0)/d}, {(3,0)/e}, {(2,-1)/f}, {(4,-1)/g}}
-        \node[vertex] (\name) at \pos {$\name$};
-    % Connect vertices with edges and draw weights
-    \foreach \source/ \dest /\weight in {b/a/7, c/b/8,d/a/5,d/b/9,
-                                         e/b/7, e/c/5,e/d/15,
-                                         f/d/6,f/e/8,
-                                         g/e/9,g/f/11}
-        \path[edge] (\source) -- node[weight] {$\weight$} (\dest);
-    % Start animating the vertex and edge selection. 
-    \foreach \vertex / \fr in {d/1,a/2,f/3,b/4,e/5,c/6,g/7}
-        \path<\fr-> node[selected vertex] at (\vertex) {$\vertex$};
-    % For convenience we use a background layer to highlight edges
-    % This way we don't have to worry about the highlighting covering
-    % weight labels. 
-    \begin{pgfonlayer}{background}
-        \pause
-        \foreach \source / \dest in {d/a,d/f,a/b,b/e,e/c,e/g}
-            \path<+->[selected edge] (\source.center) -- (\dest.center);
-        \foreach \source / \dest / \fr in {d/b/4,d/e/5,e/f/5,b/c/6,f/g/7}
-            \path<\fr->[ignored edge] (\source.center) -- (\dest.center);
-    \end{pgfonlayer}
-\end{tikzpicture}
-
-\end{frame}
-
-}
 
 
 
